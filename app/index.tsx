@@ -3,14 +3,14 @@ import { Link, useRouter } from "expo-router";
 import {
   Button,
   H1,
-  ListItem,
   Paragraph,
-  Separator,
-  YGroup,
+  Text,
+  XStack,
   YStack
 } from "tamagui";
 
 import { MyStack } from "../components/MyStack";
+import { green, amber } from "../utils/colors";
 
 export default function Home() {
   const router = useRouter();
@@ -18,69 +18,46 @@ export default function Home() {
   return (
     <MyStack>
       <YStack
-        space="$4"
+        space="$1"
         maxWidth={600}
+        alignItems="center"
       >
-        <H1 textAlign="center">Welcome to Tamagui.</H1>
-        <Paragraph textAlign="center">
-          Here&apos;s a basic starter to show navigating from one screen to
-          another.
+        <XStack>
+          <H1 color={amber[400]}>Grocer</H1>
+          <H1 color={green[600]}>Savvy</H1>
+        </XStack>
+
+        <Paragraph
+          textAlign="center"
+          color="grey"
+        >
+          Simplify Your Grocery Experience
         </Paragraph>
       </YStack>
 
-      <Button onPress={() => router.push("/users/testuser")}>
-        Go to user page
-      </Button>
-
-      <YStack space="$5">
-        <YGroup
-          bordered
-          separator={<Separator />}
-          theme="green"
+      <YStack
+        space="$3"
+        maxWidth={600}
+      >
+        <Button
+          backgroundColor={green[600]}
+          color="white"
+          onPress={() => router.push("/pages/Login")}
         >
-          <YGroup.Item>
-            <Link
-              asChild
-              href="https://twitter.com/natebirdman"
-              target="_blank"
-            >
-              <ListItem
-                hoverTheme
-                title="Nate"
-                pressTheme
-                icon={Twitter}
-              />
-            </Link>
-          </YGroup.Item>
-          <YGroup.Item>
-            <Link
-              asChild
-              href="https://github.com/tamagui/tamagui"
-              target="_blank"
-            >
-              <ListItem
-                hoverTheme
-                pressTheme
-                title="Tamagui"
-                icon={Github}
-              />
-            </Link>
-          </YGroup.Item>
-          <YGroup.Item>
-            <Link
-              asChild
-              href="https://github.com/ivopr/tamagui-expo"
-              target="_blank"
-            >
-              <ListItem
-                hoverTheme
-                pressTheme
-                title="This Template"
-                icon={Github}
-              />
-            </Link>
-          </YGroup.Item>
-        </YGroup>
+          Sign In
+        </Button>
+        <Text
+          textAlign="center"
+          color="black"
+        >
+          Don't have an account?&nbsp;
+          <Text
+            color={green[600]}
+            onPress={() => router.push("/users/testuser")}
+          >
+            Register
+          </Text>
+        </Text>
       </YStack>
     </MyStack>
   );
